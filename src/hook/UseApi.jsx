@@ -7,6 +7,9 @@ const useApi = (initialUrl) => {
   const [error, setError] = useState(null);
   const [zonas, setZonas] = useState([]);
   const [Programa, setPrograma] = useState([]);
+  const [lider, setLider] = useState([])
+  const [votante, setVotante] = useState([])
+  console.log(error)
   const fetchData = async (url) => {
     try {
       const response = await axios.get(url);
@@ -26,7 +29,7 @@ const useApi = (initialUrl) => {
       setError(error);
     }
   };
-
+  console.log(data, 'data')
   useEffect(() => {
     fetchData(initialUrl);
   }, [initialUrl]);
@@ -35,13 +38,16 @@ const useApi = (initialUrl) => {
     if (!loading && data) {
       setZonas(data.map((item) => item.zona));
       setPrograma(data.map((item) => item.nom_prog));
+      setLider(data.map((item) => item.nom_lider));
+      setVotante(data.map((item) => item.nombre));
+      
     } else {
       setZonas([]);
       setPrograma([]);
     }
   }, [loading, data]);
 
-  return { data, loading, error, fetchData, updateData, zonas, Programa };
+  return { data, loading, error, fetchData, updateData, zonas, Programa, lider, votante};
 };
 
 export default useApi;

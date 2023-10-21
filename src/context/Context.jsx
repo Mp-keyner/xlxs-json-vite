@@ -4,9 +4,9 @@ import useApi from "../hook/UseApi"; // Ajusta la ruta según tu estructura de c
 export const ContextApp = createContext();
 
 export const Context = ({ children }) => {
-  const apiUrl =
-    "https://sheet.best/api/sheets/b2d45b17-a22f-4d5a-9000-cf81c37ffce9"; // Ajusta la URL de tu API
-  const { data, loading, error, fetchData, updateData, zonas, Programa } =
+  
+    const apiUrl = 'https://sheet.best/api/sheets/8e9024c3-2b45-46fd-9e58-1df3a1c335bf'
+  const { data, loading, error, fetchData, updateData, zonas, Programa, lider, votante } =
     useApi(apiUrl);
   const [voto, setVoto] = useState(["keyner voto"]);
   console.log(voto, "valro del vot");
@@ -22,6 +22,9 @@ export const Context = ({ children }) => {
         Programa,
         voto,
         setVoto,
+        lider,
+        votante,
+        apiUrl
       }}
     >
       {children}

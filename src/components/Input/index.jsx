@@ -2,7 +2,7 @@ import React from "react";
 import ComboBox from "../ComboBox";
 import Box from "@mui/material/Box";
 
-const Input = ({ name, placeHolder, top100Films }) => {
+const Input = ({ name, placeHolder, top100Films, setSelect, select }) => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 0.7 }}>
       <Box sx={{ display: "flex", gap: 0.3 }}>
@@ -11,7 +11,12 @@ const Input = ({ name, placeHolder, top100Films }) => {
           *
         </Box>
       </Box>
-      <ComboBox placeHolder={placeHolder} top100Films={top100Films} />
+      <ComboBox
+        placeHolder={placeHolder}
+        top100Films={top100Films}
+        setSelect={setSelect}
+        select={select}
+      />
     </Box>
   );
 };

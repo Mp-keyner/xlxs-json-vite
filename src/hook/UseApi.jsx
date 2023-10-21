@@ -5,7 +5,8 @@ const useApi = (initialUrl) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [zonas, setZonas] = useState([]);
+  const [Programa, setPrograma] = useState([]);
   const fetchData = async (url) => {
     try {
       const response = await axios.get(url);
@@ -30,7 +31,17 @@ const useApi = (initialUrl) => {
     fetchData(initialUrl);
   }, [initialUrl]);
 
-  return { data, loading, error, fetchData, updateData };
+  useEffect(() => {
+    if (!loading && data) {
+      setZonas(data.map((item) => item.zona));
+      setPrograma(data.map((item) => item.nom_prog));
+    } else {
+      setZonas([]);
+      setPrograma([]);
+    }
+  }, [loading, data]);
+
+  return { data, loading, error, fetchData, updateData, zonas, Programa };
 };
 
 export default useApi;
